@@ -28,6 +28,28 @@ body {
     position: relative;
 }
 
+/* Sound gate (mobile-friendly) */
+.sound-gate {
+    position: fixed;
+    top: 16px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 1000;
+    padding: 10px 16px;
+    border: none;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.92);
+    color: #1a1a2e;
+    font-family: 'Caveat', cursive;
+    font-size: 20px;
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+}
+
+.sound-gate.hidden {
+    display: none;
+}
+
 /* Page system */
 .page {
     display: none;

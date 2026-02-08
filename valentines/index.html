@@ -32,6 +32,11 @@
         <div class="particle"></div>
     </div>
 
+    <!-- Tap to enable sound (mobile-friendly) -->
+    <button class="sound-gate" id="sound-gate" aria-label="Enable sound">
+        Tap to enable sound 🔊
+    </button>
+
     <!-- PAGE 0: Landing with Roses -->
     <div class="page active" id="landing-page">
         <div class="landing-container">
@@ -328,6 +333,9 @@
                 playRoseSound();
                 roseSoundPending = false;
             }
+
+            const gate = document.getElementById("sound-gate");
+            if (gate) gate.classList.add("hidden");
         }
 
         // First user interaction unlocks audio for everything
@@ -335,6 +343,14 @@
         firstInteractionEvents.forEach(evt => {
             window.addEventListener(evt, unlockAllAudio, { once: true, passive: true });
         });
+
+        const soundGate = document.getElementById("sound-gate");
+        if (soundGate) {
+            soundGate.addEventListener("click", () => {
+                unlockAllAudio();
+                startBackgroundMusic();
+            });
+        }
 
         let roseSoundPending = false;
         let roseSoundPlayed = false;
