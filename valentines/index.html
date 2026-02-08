@@ -3,45 +3,264 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>hi bubbba!</title>
+    <title>hi bubbba! 💕</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>💕</text></svg>">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@700&family=Playfair+Display:wght@400;700&family=Dancing+Script:wght@700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <!-- Floating hearts background -->
     <div class="heart-bg" style="top: 10%; left: 10%; animation-delay: 0s;">💕</div>
     <div class="heart-bg" style="top: 20%; right: 15%; animation-delay: 2s;">💓</div>
     <div class="heart-bg" style="bottom: 15%; left: 20%; animation-delay: 4s;">💗</div>
     <div class="heart-bg" style="bottom: 25%; right: 10%; animation-delay: 1s;">💖</div>
     <div class="heart-bg" style="top: 50%; left: 5%; animation-delay: 3s;">💞</div>
     <div class="heart-bg" style="top: 40%; right: 5%; animation-delay: 5s;">💛</div>
+    <div class="heart-bg" style="top: 60%; left: 50%; animation-delay: 6s;">💝</div>
+    <div class="heart-bg" style="bottom: 40%; right: 30%; animation-delay: 7s;">💘</div>
 
-    <div class="container">
-        <div id="question-content">
-            <div class="emoji">💌</div>
-            <h1>will you be my valentine?</h1>
-            <p class="question">I know it's early, but I wanted to ask you before it's too late.</p>
-            
-            <div class="buttons">
-                <button class="yes-btn" onclick="sayYes()"
-                >Yes, i'll be your valentine! ❣️</button>
-                <button class="no-btn" id="no-btn" onClick="moveButton()"
-                >No 💔</button>
+    <!-- Floating particles -->
+    <div class="particles">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+    </div>
+
+    <!-- PAGE 1: Question -->
+    <div class="page active" id="question-page">
+        <div class="container">
+            <div id="question-content">
+                <div class="card-decoration top-left"></div>
+                <div class="card-decoration top-right"></div>
+                <div class="card-decoration bottom-left"></div>
+                <div class="card-decoration bottom-right"></div>
+                
+                <div class="emoji">💌</div>
+                <h1>will you be my valentine?</h1>
+                <p class="question">I know it's early, but I wanted to ask you before it's too late.</p>
+                
+                <div class="buttons">
+                    <button class="yes-btn" onclick="sayYes()">
+                        <span class="btn-shine"></span>
+                        Yes, i'll be your valentine! ❣️
+                    </button>
+                    <button class="no-btn" id="no-btn" onclick="moveButton()">
+                        No 💔
+                    </button>
+                </div>
+            </div>   
+
+            <div class="success" id="success">
+                <div class="card-decoration top-left"></div>
+                <div class="card-decoration top-right"></div>
+                <div class="card-decoration bottom-left"></div>
+                <div class="card-decoration bottom-right"></div>
+                
+                <div class="emoji pulse-heart">🎊</div>
+                <h2>💖 you said yes! 💖</h2>
+                <p>I'm so happy to be your valentine. I love you so much.</p>
+                <p>Can't wait to celebrate love with you!</p>
+                
+                <button class="letter-btn" onclick="goToLetter()">
+                    <span class="btn-shine"></span>
+                    ✉️ Read My Letter
+                </button>
             </div>
-        </div>   
+        </div>
+    </div>
 
-        <div class="success" id="success">
-            <div class="emoji">🎊</div>
-            <h2>💖 you said yes! 💖</h2>
-            <p>I'm so happy to be your valentine. I love you so much.</p>
-            <p>Can't wait to celebrate love with you!</p>
+    <!-- PAGE 2: Letter -->
+    <div class="page" id="letter-page">
+        <button class="back-btn" onclick="goBack()">
+            <span>←</span>
+            <span>Back</span>
+        </button>
+
+        <div class="letter-container">
+            <div class="envelope" id="envelope" onclick="openEnvelope()">
+                <div class="envelope-flap" id="flap"></div>
+                <div class="envelope-seal">💕</div>
+                <div class="envelope-base">
+                    <div class="deco-heart" style="top: 20%; left: 15%;">💖</div>
+                    <div class="deco-heart" style="top: 60%; right: 20%;">💗</div>
+                </div>
+            </div>
+
+            <p class="instruction" id="instruction">✨ Click the envelope to open ✨</p>
+
+            <div class="letter" id="letter">
+                <div class="letter-border">
+                    <div class="letter-header">
+                        <h1>To My Dearest Valentine</h1>
+                        <p class="letter-date">February 2026</p>
+                    </div>
+
+                    <div class="letter-content">
+                        <p>My dearest Bubbba, from the moment I met you, my world became brighter, more colorful, and filled with endless joy. You are the sunshine that warms my coldest days and the moonlight that guides me through my darkest nights.</p>
+
+                        <p>Every moment spent with you is a treasure that I hold close to my heart. Your laughter is my favorite melody, your smile is my favorite sight, and your love is my greatest blessing. I can't imagine my life without you in it.</p>
+
+                        <p>This Valentine's Day, I want you to know that you mean the world to me. You are not just my valentine—you are my best friend, my confidant, my partner in all adventures, and the love of my life.</p>
+
+                        <p>Thank you for being you, for loving me, and for making every single day feel like a celebration of love. I promise to cherish you, support you, and love you with all my heart, today and always.</p>
+
+                        <p>Here's to us, to our beautiful journey together, and to all the wonderful memories we'll create. Happy Valentine's Day, my love. You are my forever and always.</p>
+
+                        <div class="letter-signature">
+                            With all my love,<br>
+                            Your Valentine 💕
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 
     <script>
+        let noCount = 0;
+        let isEnvelopeOpen = false;
         
+        // Question page functions
+        function moveButton() {
+            const btn = document.getElementById('no-btn');
+            const container = document.querySelector('.container');
+            
+            const containerRect = container.getBoundingClientRect();
+            const btnRect = btn.getBoundingClientRect();
+
+            // Get viewport dimensions
+            const viewportWidth = window.innerWidth;
+            const viewportHeight = window.innerHeight;
+            const btnWidth = btn.offsetWidth;
+            const btnHeight = btn.offsetHeight;
+            
+            const padding = 20;
+            const maxX = containerRect.width - btnRect.width - (padding * 2);
+            const maxY = containerRect.height - btnRect.height - (padding * 2);
+            
+           // Calculate truly random positions across entire viewport
+            const randomX = Math.floor(Math.random() * (viewportWidth - btnWidth - padding * 2)) + padding;
+            const randomY = Math.floor(Math.random() * (viewportHeight - btnHeight - padding * 2)) + padding;
+            
+            btn.style.position = 'fixed';
+            btn.style.left = randomX + 'px';
+            btn.style.top = randomY + 'px';
+            btn.style.zIndex = '999';
+            
+            noCount++;
+            const noTexts = [
+                'No 💔',
+                'Are you sure? 🤔',
+                'Really? 😢',
+                'Think again! 💭',
+                'Please say yes! 🙏',
+                'I know you love me! 💕',
+                'Last chance! ⏰',
+                'Please? 😔',
+                'Pretty please? 🥺',
+            ];
+            
+            if (noCount < noTexts.length) {
+                btn.textContent = noTexts[noCount];
+            }
+            
+            const newSize = Math.max(0.5, 1 - (noCount * 0.08));
+            btn.style.transform = `scale(${newSize})`;
+        }
+        
+        function sayYes() {
+            document.getElementById('question-content').style.display = 'none';
+            document.getElementById('success').style.display = 'block';
+            createConfetti();
+            createHeartsExplosion();
+        }
+        
+        function createConfetti() {
+            const colors = ['#ff6b9d', '#ffd700', '#ff1493', '#ff69b4', '#ff85c1'];
+            
+            for (let i = 0; i < 100; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti';
+                    confetti.style.left = Math.random() * 100 + '%';
+                    confetti.style.background = colors[Math.floor(Math.random() * colors.length)];
+                    confetti.style.animationDelay = Math.random() * 0.5 + 's';
+                    confetti.style.animationDuration = (Math.random() * 2 + 2) + 's';
+                    document.body.appendChild(confetti);
+                    
+                    setTimeout(() => confetti.remove(), 3000);
+                }, i * 30);
+            }
+        }
+        
+        function createHeartsExplosion() {
+            const hearts = ['💕', '💓', '💗', '💖', '💞', '💛'];
+            const container = document.querySelector('.container');
+            const rect = container.getBoundingClientRect();
+            const centerX = rect.left + rect.width / 2;
+            const centerY = rect.top + rect.height / 2;
+            
+            for (let i = 0; i < 20; i++) {
+                setTimeout(() => {
+                    const heart = document.createElement('div');
+                    heart.className = 'heart-explosion';
+                    heart.textContent = hearts[Math.floor(Math.random() * hearts.length)];
+                    heart.style.left = centerX + 'px';
+                    heart.style.top = centerY + 'px';
+                    
+                    const angle = (Math.PI * 2 * i) / 20;
+                    const distance = 150 + Math.random() * 100;
+                    const x = Math.cos(angle) * distance;
+                    const y = Math.sin(angle) * distance;
+                    
+                    heart.style.setProperty('--x', x + 'px');
+                    heart.style.setProperty('--y', y + 'px');
+                    
+                    document.body.appendChild(heart);
+                    
+                    setTimeout(() => heart.remove(), 2000);
+                }, i * 50);
+            }
+        }
+        
+        // Navigation functions
+        function goToLetter() {
+            document.getElementById('question-page').classList.remove('active');
+            document.getElementById('letter-page').classList.add('active');
+            
+            // Auto-open envelope after 2 seconds
+            setTimeout(() => {
+                openEnvelope();
+            }, 2000);
+        }
+        
+        function goBack() {
+            document.getElementById('letter-page').classList.remove('active');
+            document.getElementById('question-page').classList.add('active');
+            
+            // Reset envelope
+            isEnvelopeOpen = false;
+            document.getElementById('flap').classList.remove('open');
+            document.getElementById('letter').classList.remove('show');
+            document.getElementById('instruction').classList.remove('hidden');
+        }
+        
+        // Letter page functions
+        function openEnvelope() {
+            if (!isEnvelopeOpen) {
+                isEnvelopeOpen = true;
+                document.getElementById('flap').classList.add('open');
+                document.getElementById('instruction').classList.add('hidden');
+                
+                setTimeout(() => {
+                    document.getElementById('letter').classList.add('show');
+                }, 400);
+            }
+        }
     </script>
- 
 </body>
 </html>
