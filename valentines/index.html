@@ -226,21 +226,18 @@
             <div class="letter" id="letter">
                 <div class="letter-border">
                     <div class="letter-header">
-                        <h1>To My Dearest Valentine</h1>
-                        <p class="letter-date">February 2026</p>
+                        <h1><span class="tight">My</span> Dearest Valentine</h1>
                     </div>
-
+            
                     <div class="letter-content">
-                        <p>My dearest Bubbba, from the moment I met you, my world became brighter, more colorful, and filled with endless joy. You are the sunshine that warms my coldest days and the moonlight that guides me through my darkest nights.</p>
-
-                        <p>Every moment spent with you is a treasure that I hold close to my heart. Your laughter is my favorite melody, your smile is my favorite sight, and your love is my greatest blessing. I can't imagine my life without you in it.</p>
-
-                        <p>This Valentine's Day, I want you to know that you mean the world to me. You are not just my valentine—you are my best friend, my confidant, my partner in all adventures, and the love of my life.</p>
-
-                        <p>Thank you for being you, for loving me, and for making every single day feel like a celebration of love. I promise to cherish you, support you, and love you with all my heart, today and always.</p>
-
-                        <p>Here's to us, to our beautiful journey together, and to all the wonderful memories we'll create. Happy Valentine's Day, my love. You are my forever and always.</p>
-
+                        <p>My only baby, it's our 2nd valentine's day together! I can't wait to spend it with you and celebrate our love. I've been thinking of how will I ask you the question for the second time.</p>
+                        <p>This one is special, because this is the first time I'm asking you the question in this weird website ahhahahaha.</p>
+                        <p>I promised myself to ask you the question every valentine's day until we're old and grey. In my own way, I want to make you feel special and loved every year and every day.</p>
+            
+                        <p>You are the only valentine that I've ever wanted, and I'm so grateful to have you in my life. I love you so much.</p>
+            
+                        <p>I hope you like it!</p>
+            
                         <div class="letter-signature">
                             With all my love,<br>
                             Your Valentine 💕
@@ -314,6 +311,65 @@
         let noCount = 0;
         let isEnvelopeOpen = false;
 
+        let audioUnlocked = false;
+
+        function unlockAllAudio() {
+            if (audioUnlocked) return;
+            audioUnlocked = true;
+
+            // Unlock all audio elements
+            document.querySelectorAll("audio").forEach(a => {
+                a.play().then(() => a.pause()).catch(() => {});
+            });
+
+            console.log("🔓 Audio unlocked!");
+
+            if (roseSoundPending) {
+                playRoseSound();
+                roseSoundPending = false;
+            }
+        }
+
+        // First user interaction unlocks audio for everything
+        const firstInteractionEvents = ["pointerdown", "touchstart", "mousedown", "keydown"];
+        firstInteractionEvents.forEach(evt => {
+            window.addEventListener(evt, unlockAllAudio, { once: true, passive: true });
+        });
+
+        let roseSoundPending = false;
+        let roseSoundPlayed = false;
+
+        function playSoundById(id) {
+            const sound = document.getElementById(id);
+            if (!sound) return;
+            sound.currentTime = 0;
+            sound.play().catch(() => {});
+        }
+
+        // ❤️ Button sound for ALL buttons
+        document.addEventListener("click", (event) => {
+            if (!event.target.closest("button")) return;
+            if (!audioUnlocked) unlockAllAudio();
+            playSoundById("button-sound");
+        });
+
+        // 🌹 Rose bloom sound
+        function playRoseSound() {
+            if (roseSoundPlayed) return;
+            playSoundById("rose-sound");
+            roseSoundPlayed = true;
+        }
+
+        // Delay so roses appear gradually first
+        setTimeout(() => {
+            if (audioUnlocked) {
+                playRoseSound();
+            } else {
+                roseSoundPending = true;
+            }
+        }, 1500);
+
+
         // Create stars
         function createStars() {
             const starsContainer = document.getElementById('stars');
@@ -382,14 +438,19 @@
             document.getElementById('question-content').style.display = 'none';
             document.getElementById('success').style.display = 'block';
 
-            playConfettiSound();
-            playHeartSound();
+            if (audioUnlocked) {
+                playConfettiSound();
+                playHeartSound();
+            }
 
-            document.getElementById("bg-music").src += "&autoplay=1"; // triggers play after user click
+            // Start background music only after audio is unlocked
+            const iframe = document.getElementById("bg-music");
+            iframe.src = iframe.src + "&autoplay=1";
 
             createConfetti();
             createHeartsExplosion();
         }
+
         
         function createConfetti() {
             const colors = ['#ff6b9d', '#ffd700', '#ff1493', '#ff69b4', '#ff85c1'];
@@ -502,12 +563,18 @@
             sound.play();
         }
 
+
     </script>
 
 
     <!-- Sound Effects -->
-    <audio id="confetti-sound" src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_1b661d153bc.mp3?filename=party-horn-82568.mp3"></audio>
-    <audio id="heart-sound" src="https://cdn.pixabay.com/download/audio/2021/08/04/audio_a72ffb39173.mp3?filename=pop-94319.mp3"></audio>
+    <audio id="confetti-sound" preload="auto" playsinline crossorigin="anonymous" src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_1b661d153bc.mp3?filename=party-horn-82568.mp3"></audio>
+    <audio id="heart-sound" preload="auto" playsinline crossorigin="anonymous" src="https://cdn.pixabay.com/download/audio/2021/08/04/audio_a72ffb39173.mp3?filename=pop-94319.mp3"></audio>
+    <!-- Button Click Sound -->
+    <audio id="button-sound" preload="auto" playsinline crossorigin="anonymous" src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_1c568ceaf38.mp3?filename=click-124467.mp3"></audio>
+
+    <!-- Rose Bloom Sound (soft magical chime) -->
+    <audio id="rose-sound" preload="auto" playsinline crossorigin="anonymous" src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_55c5518592.mp3?filename=magical-wood-81720.mp3"></audio>
 
     <!-- Background Music via YouTube -->
     <iframe

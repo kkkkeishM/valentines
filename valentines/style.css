@@ -1269,4 +1269,49 @@ button:hover .btn-shine {
     }
 
 
+    /* Style 2: Floating Hearts Button */
+    .replay-btn-2 {
+        position: relative;
+        padding: 20px 45px;
+        background: white;
+        border: 3px solid #ff69b4;
+        border-radius: 30px;
+        color: #ff1744;
+        font-size: 18px;
+        font-weight: 700;
+        cursor: pointer;
+        box-shadow: 0 6px 20px rgba(255, 105, 180, 0.3);
+        transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        overflow: visible;
+    }
+
+    .replay-btn-2 .heart {
+        position: absolute;
+        font-size: 20px;
+        opacity: 0;
+        pointer-events: none;
+    }
+
+    .replay-btn-2:hover {
+        background: linear-gradient(135deg, #ff69b4 0%, #ff1744 100%);
+        color: white;
+        transform: scale(1.05);
+        border-color: #ff1744;
+    }
+
+    .replay-btn-2:hover .heart {
+        animation: floatHeart 1.5s ease-out;
+    }
+
+    @keyframes floatHeart {
+        0% {
+            opacity: 1;
+            transform: translateY(0) scale(0.5);
+        }
+        100% {
+            opacity: 0;
+            transform: translateY(-100px) scale(1.5);
+        }
+    }
+    
 }
