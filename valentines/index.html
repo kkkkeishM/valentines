@@ -354,10 +354,20 @@
         });
 
         // 🌹 Rose bloom sound
+        function startBackgroundMusic() {
+            const iframe = document.getElementById("bg-music");
+            if (!iframe) return;
+            if (!iframe.dataset.baseSrc) {
+                iframe.dataset.baseSrc = iframe.src;
+            }
+            iframe.src = iframe.dataset.baseSrc + "&autoplay=1";
+        }
+
         function playRoseSound() {
             if (roseSoundPlayed) return;
             playSoundById("rose-sound");
             roseSoundPlayed = true;
+            startBackgroundMusic();
         }
 
         // Delay so roses appear gradually first
@@ -444,8 +454,9 @@
             }
 
             // Start background music only after audio is unlocked
-            const iframe = document.getElementById("bg-music");
-            iframe.src = iframe.src + "&autoplay=1";
+            if (audioUnlocked) {
+                startBackgroundMusic();
+            }
 
             createConfetti();
             createHeartsExplosion();
@@ -568,22 +579,22 @@
 
 
     <!-- Sound Effects -->
-    <audio id="confetti-sound" preload="auto" playsinline crossorigin="anonymous" src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_1b661d153bc.mp3?filename=party-horn-82568.mp3"></audio>
-    <audio id="heart-sound" preload="auto" playsinline crossorigin="anonymous" src="https://cdn.pixabay.com/download/audio/2021/08/04/audio_a72ffb39173.mp3?filename=pop-94319.mp3"></audio>
+    <audio id="confetti-sound" preload="auto" playsinline src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_1b661d153bc.mp3?filename=party-horn-82568.mp3"></audio>
+    <audio id="heart-sound" preload="auto" playsinline src="https://cdn.pixabay.com/download/audio/2021/08/04/audio_a72ffb39173.mp3?filename=pop-94319.mp3"></audio>
     <!-- Button Click Sound -->
-    <audio id="button-sound" preload="auto" playsinline crossorigin="anonymous" src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_1c568ceaf38.mp3?filename=click-124467.mp3"></audio>
+    <audio id="button-sound" preload="auto" playsinline src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_1c568ceaf38.mp3?filename=click-124467.mp3"></audio>
 
     <!-- Rose Bloom Sound (soft magical chime) -->
-    <audio id="rose-sound" preload="auto" playsinline crossorigin="anonymous" src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_55c5518592.mp3?filename=magical-wood-81720.mp3"></audio>
+    <audio id="rose-sound" preload="auto" playsinline src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_55c5518592.mp3?filename=magical-wood-81720.mp3"></audio>
 
     <!-- Background Music via YouTube -->
     <iframe
         id="bg-music"
         width="0"
         height="0"
-        src="https://www.youtube.com/embed/FPz9GSC5QlM?autoplay=1&loop=1&playlist=FPz9GSC5QlM"
+        src="https://www.youtube.com/embed/FPz9GSC5QlM?loop=1&playlist=FPz9GSC5QlM"
         frameborder="0"
-        allow="autoplay"
+        allow="autoplay; encrypted-media"
     ></iframe>
 
 
