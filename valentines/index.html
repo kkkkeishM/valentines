@@ -354,6 +354,7 @@
 
         let roseSoundPending = false;
         let roseSoundPlayed = false;
+        let bgMusicStarted = false;
 
         function playSoundById(id) {
             const sound = document.getElementById(id);
@@ -373,10 +374,12 @@
         function startBackgroundMusic() {
             const iframe = document.getElementById("bg-music");
             if (!iframe) return;
+            if (bgMusicStarted) return;
             if (!iframe.dataset.baseSrc) {
                 iframe.dataset.baseSrc = iframe.src;
             }
             iframe.src = iframe.dataset.baseSrc + "&autoplay=1";
+            bgMusicStarted = true;
         }
 
         function playRoseSound() {
@@ -469,10 +472,7 @@
                 playHeartSound();
             }
 
-            // Start background music only after audio is unlocked
-            if (audioUnlocked) {
-                startBackgroundMusic();
-            }
+            // Background music is started at rose bloom; don't restart here.
 
             createConfetti();
             createHeartsExplosion();
