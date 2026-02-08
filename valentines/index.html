@@ -11,15 +11,17 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- Floating hearts background -->
-    <div class="heart-bg" style="top: 10%; left: 10%; animation-delay: 0s;">💕</div>
-    <div class="heart-bg" style="top: 20%; right: 15%; animation-delay: 2s;">💓</div>
-    <div class="heart-bg" style="bottom: 15%; left: 20%; animation-delay: 4s;">💗</div>
-    <div class="heart-bg" style="bottom: 25%; right: 10%; animation-delay: 1s;">💖</div>
-    <div class="heart-bg" style="top: 50%; left: 5%; animation-delay: 3s;">💞</div>
-    <div class="heart-bg" style="top: 40%; right: 5%; animation-delay: 5s;">💛</div>
-    <div class="heart-bg" style="top: 60%; left: 50%; animation-delay: 6s;">💝</div>
-    <div class="heart-bg" style="bottom: 40%; right: 30%; animation-delay: 7s;">💘</div>
+    <!-- Moon -->
+    <div class="moon">
+        <div class="crater crater-1"></div>
+        <div class="crater crater-2"></div>
+        <div class="crater crater-3"></div>
+        <div class="crater crater-4"></div>
+        <div class="crater crater-5"></div>
+    </div>
+
+    <!-- Stars background -->
+    <div class="stars" id="stars"></div>
 
     <!-- Floating particles -->
     <div class="particles">
@@ -30,8 +32,137 @@
         <div class="particle"></div>
     </div>
 
+    <!-- PAGE 0: Landing with Roses -->
+    <div class="page active" id="landing-page">
+        <div class="landing-container">
+            <div class="roses-container">
+                <!-- Left Rose -->
+                <div class="rose left">
+                    <div class="stem"></div>
+                    <div class="leaf leaf-1"></div>
+                    <div class="leaf leaf-2"></div>
+                    
+                    <div class="flower">
+                        <div class="petal-layer petal-layer-1">
+                            <div class="petal"></div>
+                            <div class="petal"></div>
+                            <div class="petal"></div>
+                            <div class="petal"></div>
+                            <div class="petal"></div>
+                            <div class="petal"></div>
+                        </div>
+                        <div class="petal-layer petal-layer-2">
+                            <div class="petal"></div>
+                            <div class="petal"></div>
+                            <div class="petal"></div>
+                            <div class="petal"></div>
+                            <div class="petal"></div>
+                            <div class="petal"></div>
+                        </div>
+                        <div class="petal-layer petal-layer-3">
+                            <div class="petal"></div>
+                            <div class="petal"></div>
+                            <div class="petal"></div>
+                            <div class="petal"></div>
+                        </div>
+                        <div class="flower-center"></div>
+                    </div>
+                </div>
+
+                <!-- Center Rose (Bigger) -->
+                <div class="rose center">
+                    <div class="stem"></div>
+                    <div class="leaf leaf-1"></div>
+                    <div class="leaf leaf-2"></div>
+                    
+                    <div class="flower">
+                        <div class="petal-layer petal-layer-1">
+                            <div class="petal"></div>
+                            <div class="petal"></div>
+                            <div class="petal"></div>
+                            <div class="petal"></div>
+                            <div class="petal"></div>
+                            <div class="petal"></div>
+                        </div>
+                        <div class="petal-layer petal-layer-2">
+                            <div class="petal"></div>
+                            <div class="petal"></div>
+                            <div class="petal"></div>
+                            <div class="petal"></div>
+                            <div class="petal"></div>
+                            <div class="petal"></div>
+                        </div>
+                        <div class="petal-layer petal-layer-3">
+                            <div class="petal"></div>
+                            <div class="petal"></div>
+                            <div class="petal"></div>
+                            <div class="petal"></div>
+                        </div>
+                        <div class="flower-center"></div>
+                    </div>
+                </div>
+
+                <!-- Right Rose -->
+                <div class="rose right">
+                    <div class="stem"></div>
+                    <div class="leaf leaf-1"></div>
+                    <div class="leaf leaf-2"></div>
+                    
+                    <div class="flower">
+                        <div class="petal-layer petal-layer-1">
+                            <div class="petal"></div>
+                            <div class="petal"></div>
+                            <div class="petal"></div>
+                            <div class="petal"></div>
+                            <div class="petal"></div>
+                            <div class="petal"></div>
+                        </div>
+                        <div class="petal-layer petal-layer-2">
+                            <div class="petal"></div>
+                            <div class="petal"></div>
+                            <div class="petal"></div>
+                            <div class="petal"></div>
+                            <div class="petal"></div>
+                            <div class="petal"></div>
+                        </div>
+                        <div class="petal-layer petal-layer-3">
+                            <div class="petal"></div>
+                            <div class="petal"></div>
+                            <div class="petal"></div>
+                            <div class="petal"></div>
+                        </div>
+                        <div class="flower-center"></div>
+                    </div>
+                </div>
+
+                <!-- Sparkles around roses -->
+                <div class="sparkle" style="left: 10%; bottom: 280px; animation-delay: 3.5s;"></div>
+                <div class="sparkle" style="left: 25%; bottom: 320px; animation-delay: 4s;"></div>
+                <div class="sparkle" style="right: 25%; bottom: 340px; animation-delay: 4.5s;"></div>
+                <div class="sparkle" style="right: 10%; bottom: 300px; animation-delay: 5s;"></div>
+                <div class="sparkle" style="left: 50%; bottom: 360px; animation-delay: 3.8s;"></div>
+            </div>
+
+            <div class="message">For Someone Special...</div>
+            
+            <button class="continue-btn" onclick="goToQuestion()">
+                <span>Continue 💕</span>
+            </button>
+        </div>
+    </div>
+
     <!-- PAGE 1: Question -->
-    <div class="page active" id="question-page">
+    <div class="page" id="question-page">
+        <!-- Floating hearts background -->
+        <div class="heart-bg" style="top: 10%; left: 10%; animation-delay: 0s;">💕</div>
+        <div class="heart-bg" style="top: 20%; right: 15%; animation-delay: 2s;">💓</div>
+        <div class="heart-bg" style="bottom: 15%; left: 20%; animation-delay: 4s;">💗</div>
+        <div class="heart-bg" style="bottom: 25%; right: 10%; animation-delay: 1s;">💖</div>
+        <div class="heart-bg" style="top: 50%; left: 5%; animation-delay: 3s;">💞</div>
+        <div class="heart-bg" style="top: 40%; right: 5%; animation-delay: 5s;">💛</div>
+        <div class="heart-bg" style="top: 60%; left: 50%; animation-delay: 6s;">💝</div>
+        <div class="heart-bg" style="bottom: 40%; right: 30%; animation-delay: 7s;">💘</div>
+
         <div class="container">
             <div id="question-content">
                 <div class="card-decoration top-left"></div>
@@ -114,24 +245,100 @@
                             With all my love,<br>
                             Your Valentine 💕
                         </div>
+
+                        <style>
+                            /* Style 2: Floating Hearts Button (Mini Version) */
+                            .replay-btn-2 {
+                                position: relative;
+                                padding: 6px 15px; /* smaller padding */
+                                background: white;
+                                border: 2px solid #ff69b4; /* thinner border */
+                                border-radius: 16px; /* smaller radius */
+                                color: #ff1744;
+                                font-size: 12px; /* smaller text */
+                                font-weight: 700;
+                                cursor: pointer;
+                                box-shadow: 0 3px 10px rgba(255, 105, 180, 0.3); /* lighter shadow */
+                                transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+                                overflow: visible;
+                                display: inline-flex;
+                                align-items: center;
+                                gap: 4px;
+                            }
+                            
+                            .replay-btn-2 .heart {
+                                position: absolute;
+                                font-size: 10px; /* smaller hearts */
+                                opacity: 0;
+                                pointer-events: none;
+                            }
+                            
+                            .replay-btn-2:hover {
+                                background: linear-gradient(135deg, #ff69b4 0%, #ff1744 100%);
+                                color: white;
+                                transform: scale(1.05);
+                                border-color: #ff1744;
+                            }
+                            
+                            .replay-btn-2:hover .heart {
+                                animation: floatHeart 1.5s ease-out;
+                            }
+                            
+                            @keyframes floatHeart {
+                                0% {
+                                    opacity: 1;
+                                    transform: translateY(0) scale(0.5);
+                                }
+                                100% {
+                                    opacity: 0;
+                                    transform: translateY(-50px) scale(1.2); /* less float distance for mini version */
+                                }
+                            }
+                            </style>
+                            
+                            <button class="replay-btn-2" onclick="replayExperience(); createHearts(event)">
+                                <span class="heart" style="left: 50%; top: 50%;">❤️</span>
+                                <span class="heart" style="left: 30%; top: 40%;">💕</span>
+                                <span class="heart" style="left: 70%; top: 60%;">💖</span>
+                                Replay
+                            </button>
+                            
+
                     </div>
                 </div>
             </div>
-        </div>
+        </div>    
     </div>
 
     <script>
         let noCount = 0;
         let isEnvelopeOpen = false;
+
+        // Create stars
+        function createStars() {
+            const starsContainer = document.getElementById('stars');
+            for (let i = 0; i < 100; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.animationDelay = Math.random() * 3 + 's';
+                starsContainer.appendChild(star);
+            }
+        }
+
+        createStars();
+        
+        // Landing page navigation
+        function goToQuestion() {
+            document.getElementById('landing-page').classList.remove('active');
+            document.getElementById('question-page').classList.add('active');
+        }
         
         // Question page functions
         function moveButton() {
             const btn = document.getElementById('no-btn');
-            const container = document.querySelector('.container');
             
-            const containerRect = container.getBoundingClientRect();
-            const btnRect = btn.getBoundingClientRect();
-
             // Get viewport dimensions
             const viewportWidth = window.innerWidth;
             const viewportHeight = window.innerHeight;
@@ -139,13 +346,12 @@
             const btnHeight = btn.offsetHeight;
             
             const padding = 20;
-            const maxX = containerRect.width - btnRect.width - (padding * 2);
-            const maxY = containerRect.height - btnRect.height - (padding * 2);
             
-           // Calculate truly random positions across entire viewport
+            // Calculate truly random positions across entire viewport
             const randomX = Math.floor(Math.random() * (viewportWidth - btnWidth - padding * 2)) + padding;
             const randomY = Math.floor(Math.random() * (viewportHeight - btnHeight - padding * 2)) + padding;
             
+            // Change to fixed positioning to move anywhere on screen
             btn.style.position = 'fixed';
             btn.style.left = randomX + 'px';
             btn.style.top = randomY + 'px';
@@ -261,6 +467,22 @@
                 }, 400);
             }
         }
+
+        function replayExperience() {
+            // go back to landing page
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.getElementById('landing-page').classList.add('active');
+
+            // reset scroll
+            const letter = document.querySelector('.letter');
+            if (letter) letter.scrollTop = 0;
+
+            // restart animations by reloading page
+            setTimeout(() => {
+                location.reload();
+            }, 100);
+        }
+
     </script>
 </body>
 </html>
