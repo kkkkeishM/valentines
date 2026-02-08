@@ -324,6 +324,9 @@
 
             // Unlock all audio elements
             document.querySelectorAll("audio").forEach(a => {
+                a.muted = false;
+                a.volume = 1;
+                a.currentTime = 0;
                 a.play().then(() => a.pause()).catch(() => {});
             });
 
@@ -346,10 +349,13 @@
 
         const soundGate = document.getElementById("sound-gate");
         if (soundGate) {
-            soundGate.addEventListener("click", () => {
+            const handleGate = () => {
                 unlockAllAudio();
+                playSoundById("button-sound");
                 startBackgroundMusic();
-            });
+            };
+            soundGate.addEventListener("click", handleGate);
+            soundGate.addEventListener("touchstart", handleGate, { passive: true });
         }
 
         let roseSoundPending = false;
@@ -363,12 +369,15 @@
             sound.play().catch(() => {});
         }
 
-        // ❤️ Button sound for ALL buttons
-        document.addEventListener("click", (event) => {
+        function handleButtonSound(event) {
             if (!event.target.closest("button")) return;
             if (!audioUnlocked) unlockAllAudio();
             playSoundById("button-sound");
-        });
+        }
+
+        // ❤️ Button sound for ALL buttons
+        document.addEventListener("click", handleButtonSound);
+        document.addEventListener("touchstart", handleButtonSound, { passive: true });
 
         // 🌹 Rose bloom sound
         function startBackgroundMusic() {
