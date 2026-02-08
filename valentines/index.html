@@ -381,12 +381,19 @@
         function sayYes() {
             document.getElementById('question-content').style.display = 'none';
             document.getElementById('success').style.display = 'block';
+
+            playConfettiSound();
+            playHeartSound();
+
+            document.getElementById("bg-music").src += "&autoplay=1"; // triggers play after user click
+
             createConfetti();
             createHeartsExplosion();
         }
         
         function createConfetti() {
             const colors = ['#ff6b9d', '#ffd700', '#ff1493', '#ff69b4', '#ff85c1'];
+            playConfettiSound();
             
             for (let i = 0; i < 100; i++) {
                 setTimeout(() => {
@@ -483,6 +490,35 @@
             }, 100);
         }
 
+        function playConfettiSound() {
+            const sound = document.getElementById("confetti-sound");
+            sound.currentTime = 0;
+            sound.play();
+        }
+
+        function playHeartSound() {
+            const sound = document.getElementById("heart-sound");
+            sound.currentTime = 0;
+            sound.play();
+        }
+
     </script>
+
+
+    <!-- Sound Effects -->
+    <audio id="confetti-sound" src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_1b661d153bc.mp3?filename=party-horn-82568.mp3"></audio>
+    <audio id="heart-sound" src="https://cdn.pixabay.com/download/audio/2021/08/04/audio_a72ffb39173.mp3?filename=pop-94319.mp3"></audio>
+
+    <!-- Background Music via YouTube -->
+    <iframe
+        id="bg-music"
+        width="0"
+        height="0"
+        src="https://www.youtube.com/embed/FPz9GSC5QlM?autoplay=1&loop=1&playlist=FPz9GSC5QlM"
+        frameborder="0"
+        allow="autoplay"
+    ></iframe>
+
+
 </body>
 </html>
