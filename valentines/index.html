@@ -336,6 +336,9 @@
                 playRoseSound();
                 roseSoundPending = false;
             }
+            if (roseSoundPlayed && !bgMusicStarted) {
+                startBackgroundMusic();
+            }
 
             const gate = document.getElementById("sound-gate");
             if (gate) gate.classList.add("hidden");
@@ -372,7 +375,9 @@
         function handleButtonSound(event) {
             if (!event.target.closest("button")) return;
             if (!audioUnlocked) unlockAllAudio();
-            playSoundById("button-sound");
+            if (roseSoundPlayed && !bgMusicStarted) {
+                startBackgroundMusic();
+            }
         }
 
         // ❤️ Button sound for ALL buttons
@@ -381,19 +386,22 @@
 
         // 🌹 Rose bloom sound
         function startBackgroundMusic() {
-            const iframe = document.getElementById("bg-music");
-            if (!iframe) return;
-            if (bgMusicStarted) return;
-            if (!iframe.dataset.baseSrc) {
-                iframe.dataset.baseSrc = iframe.src;
-            }
-            iframe.src = iframe.dataset.baseSrc + "&autoplay=1";
-            bgMusicStarted = true;
+            const music = document.getElementById("bg-music");
+            if (!music || bgMusicStarted) return;
+            music.muted = false;
+            music.volume = 1;
+            music.currentTime = 0;
+            music.play()
+                .then(() => {
+                    bgMusicStarted = true;
+                })
+                .catch(() => {
+                    bgMusicStarted = false;
+                });
         }
 
         function playRoseSound() {
             if (roseSoundPlayed) return;
-            playSoundById("rose-sound");
             roseSoundPlayed = true;
             startBackgroundMusic();
         }
@@ -589,12 +597,14 @@
 
         function playConfettiSound() {
             const sound = document.getElementById("confetti-sound");
+            if (!sound) return;
             sound.currentTime = 0;
             sound.play();
         }
 
         function playHeartSound() {
             const sound = document.getElementById("heart-sound");
+            if (!sound) return;
             sound.currentTime = 0;
             sound.play();
         }
@@ -603,24 +613,16 @@
     </script>
 
 
-    <!-- Sound Effects -->
-    <audio id="confetti-sound" preload="auto" playsinline src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_1b661d153bc.mp3?filename=party-horn-82568.mp3"></audio>
-    <audio id="heart-sound" preload="auto" playsinline src="https://cdn.pixabay.com/download/audio/2021/08/04/audio_a72ffb39173.mp3?filename=pop-94319.mp3"></audio>
-    <!-- Button Click Sound -->
-    <audio id="button-sound" preload="auto" playsinline src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_1c568ceaf38.mp3?filename=click-124467.mp3"></audio>
+    <!-- Sound Effects (optional) -->
 
-    <!-- Rose Bloom Sound (soft magical chime) -->
-    <audio id="rose-sound" preload="auto" playsinline src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_55c5518592.mp3?filename=magical-wood-81720.mp3"></audio>
-
-    <!-- Background Music via YouTube -->
-    <iframe
+    <!-- Background Music -->
+    <audio
         id="bg-music"
-        width="0"
-        height="0"
-        src="https://www.youtube.com/embed/FPz9GSC5QlM?loop=1&playlist=FPz9GSC5QlM"
-        frameborder="0"
-        allow="autoplay; encrypted-media"
-    ></iframe>
+        preload="auto"
+        playsinline
+        loop
+        src="Nahanap%20Kita%20-%20Amiel%20Sol%20%28Lyrics%29.mp3"
+    ></audio>
 
 
 </body>
